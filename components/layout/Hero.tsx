@@ -1,3 +1,5 @@
+import { Button } from "../ui/Button";
+
 export default function Hero() {
   return (
     <section className="p-8 sm:p-16 max-w-5xl mx-auto">
@@ -11,9 +13,10 @@ export default function Hero() {
       </p>
 
       <div className="mt-8 flex gap-4">
-        <button className="px-6 py-3 rounded-lg bg-[--color-primary] hover:bg-[--color-primary-hover] text-white font-medium">
+        {/* <button className="px-6 py-3 rounded-lg bg-[--color-primary] hover:bg-[--color-primary-hover] text-white font-medium">
           Get Started
-        </button>
+        </button> */}
+        <Button text="Get Started" variant="secondary"/>
 
         <button className="px-6 py-3 rounded-lg border border-[color:var(--color-border)] text-[color:var(--color-text)]">
           Learn More
