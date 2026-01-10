@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Input from "@/components/ui/Input";
+import { Google } from "@/components/ui/GoogleAuthButton";
+import { signIn } from "next-auth/react";
+import { GitHub } from "@/components/ui/GithubAuthButton";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -48,6 +51,49 @@ export default function RegisterPage() {
       {error && (
         <p className="text-sm text-red-500 text-center">{error}</p>
       )}
+
+      <div className="flex w-full gap-2">
+        <button
+          type="button"
+          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          className="
+            flex items-center justify-center gap-2 w-full
+            border border-[color:var(--color-border)]
+            rounded-lg
+            font-medium
+            cursor-pointer
+            hover:bg-[var(--color-surface)]
+            p-2
+          "
+        >
+          <Google />
+          <span>Google</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
+          className="
+            flex items-center justify-center gap-2 w-full
+            border border-[color:var(--color-border)]
+            rounded-lg
+            font-medium
+            cursor-pointer
+            hover:bg-[var(--color-surface)]
+            p-2
+          "
+        >
+          <GitHub />
+          <span>GitHub</span>
+        </button>
+      </div>
+
+      {/* OR Divider */}
+      <div className="flex items-center gap-3">
+        <span className="flex-1 h-px bg-[var(--color-border)]" />
+        <span className="text-xs uppercase opacity-60">or</span>
+        <span className="flex-1 h-px bg-[var(--color-border)]" />
+      </div>
 
       <Input
         label="Name"

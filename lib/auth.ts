@@ -1,8 +1,17 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 import bcrypt from "bcryptjs";
 import connectDB from "@/lib/mongoDB";
 import { User } from "@/models/User";
+
+const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET} = process.env;
+
+if(!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GITHUB_CLIENT_ID || !GITHUB_CLIENT_SECRET){
+  throw Error("Google OAuth Credentials are not provided");
+}
+
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -40,6 +49,15 @@ export const authOptions: NextAuthOptions = {
         };
       },
     }),
+
+    GoogleProvider({
+    clientId: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET
+  }),
+  GitHubProvider({
+    clientId: GITHUB_CLIENT_ID,
+    clientSecret: GITHUB_CLIENT_SECRET
+  })
   ],
 
   session: {
@@ -53,18 +71,37 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
+  async signIn({ user, account }) {
+    if (account?.provider === "google" || account?.provider === "github") {
+      await connectDB();
 
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string;
+      const existingUser = await User.findOne({ email: user.email });
+
+      if (!existingUser) {
+        await User.create({
+          name: user.name,
+          email: user.email,
+          provider: account?.provider,
+        });
       }
-      return session;
-    },
+    }
+
+    return true;
   },
+
+  async jwt({ token, user }) {
+    if (user) {
+      token.id = user.id;
+    }
+    return token;
+  },
+
+  async session({ session, token }) {
+    if (session.user) {
+      session.user.id = token.id as string;
+    }
+    return session;
+  },
+}
+
 };
