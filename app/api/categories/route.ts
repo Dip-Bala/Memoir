@@ -25,10 +25,13 @@ export async function POST(req: NextRequest) {
         { status: 404 }
       );
     }
+    console.log("user", user);
+
     const { name, color } = await req.json();
 
     const category = await Category.findOne({ userId: user._id, name });
-    console.log(category);
+
+    console.log("category", category);
     if (category) {
       return NextResponse.json(
         { message: "Category already exists" },
@@ -74,11 +77,11 @@ export async function GET(req: NextRequest) {
     console.log(category);
     if (category.length === 0) {
       const defaultCategyList = [
-        { name: "Inbox", color: "", userId: userId },
-        { name: "Learning", color: "", userId: userId },
-        { name: "Work", color: "", userId: userId },
-        { name: "Ideas", color: "", userId: userId },
-        { name: "Archive", color: "", userId: userId },
+        { name: "Inbox", color: "neutral", userId },
+        { name: "Learning", color: "yellow", userId },
+        { name: "Work", color: "bluegray", userId },
+        { name: "Ideas", color: "violet", userId },
+        { name: "Archive", color: "gray", userId },
       ];
       category = await Category.insertMany(defaultCategyList);
     }

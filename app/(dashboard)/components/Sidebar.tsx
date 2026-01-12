@@ -1,20 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CirclePlus } from "lucide-react";
+import { ArrowLeftToLine, Circle, CirclePlus, PanelLeft } from "lucide-react";
 import AddCategoryModal from "./AddCategoryModal";
+import { CATEGORY_CONFIG } from "@/lib/categoryConfig";
+import CategoryItem from "./CategoryItem";
 
 type Category = {
   _id: string;
   name: string;
-  color?: string;
+  color: string;
 };
 
-export default function Sidebar() {
+type SidebarProps = {
+  open: boolean;
+  onClose: () => void;
+  activeCategory: Category | null;
+  onSelectCategory: (category: Category) => void;
+};
+
+export default function Sidebar({
+  open,
+  onClose,
+  activeCategory,
+  onSelectCategory,
+}: SidebarProps) {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-
   async function fetchCategories() {
     try {
       const res = await fetch("/api/categories");
@@ -34,35 +47,56 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <div className="h-screen w-64 border-r p-4 flex flex-col gap-4">
-      
-      {/* Categories */}
-      <div className="flex-1 space-y-2">
-        <p className="text-sm opacity-70 mb-2">Categories</p>
+    <aside
+      className={`
+        fixed md:static z-40
+        h-full w-64
+        bg-surface
+        border-r border-border
+        p-4
+        transform transition-transform duration-200
+        ${open ? "translate-x-0" : "-translate-x-full"}
+      `}
+    >
+      {/* Logo */}
 
-        {loading && (
-          <p className="text-sm opacity-50">Loading...</p>
-        )}
+      <div className="flex justify-between">
+        <div className="font-logo text-xl font-bold text-text p-1">
+          Memoir<span className="text-primary-deep">•</span>
+        </div>
 
-        {!loading &&
-          categories.map((cat) => (
-            <button
-              key={cat._id}
-              className="w-full text-left px-2 py-1 rounded-md hover:bg-muted"
-            >
-              {cat.name}
-            </button>
-          ))}
+        {/* collapse button */}
+        <button
+          onClick={onClose}
+          className="text-text-secondary font-light cursor-pointer hover:bg-surface-elevated p-1 rounded-lg"
+        >
+          <PanelLeft size={24} strokeWidth={1.25} />
+        </button>
       </div>
 
-      {/* Add category */}
+      {/* Add Category button */}
       <button
         onClick={() => setShowModal(true)}
-        className="flex items-center gap-2 border p-2 rounded-md hover:bg-muted"
+        className="flex items-center gap-2 p-2 w-full rounded-md text-sm font-medium hover:bg-surface-elevated text-primary-deep cursor-pointer mt-4 mb-2"
       >
         <CirclePlus size={18} />
         <span>Add Category</span>
       </button>
+
+      {/* Categories */}
+      <div className="flex-1 space-y-2">
+        {loading && <p className="text-sm opacity-50">Loading...</p>}
+
+        {!loading &&
+          categories.map((cat) => (
+            <CategoryItem
+              key={cat._id}
+              category={cat}
+              isActive={activeCategory?._id === cat._id}
+              onSelect={onSelectCategory}
+            />
+          ))}
+      </div>
 
       {showModal && (
         <AddCategoryModal
@@ -72,6 +106,6 @@ export default function Sidebar() {
           }}
         />
       )}
-    </div>
+    </aside>
   );
 }

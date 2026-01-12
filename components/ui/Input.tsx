@@ -31,9 +31,10 @@ export default function Input({
           text-sm
           border
           border-[var(--color-border)]
-          focus:outline-none
-          focus:ring-2
-          focus:ring-[var(--color-primary)]
+          focus:outline
+          // focus:ring
+          focus:border
+          focus:outline-[var(--color-accent)]
         "
       />
     </div>

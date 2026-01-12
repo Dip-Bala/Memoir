@@ -134,8 +134,8 @@ export default function LoginPage() {
         disabled={loading}
         className="
           w-full
-          bg-[color:var(--color-contrast)]
-          text-[color:var(--color-text-muted)]
+          bg-[color:var(--color-text)]
+          text-[color:var(--color-bg)]
           py-3
           rounded-lg
           font-medium

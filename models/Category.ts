@@ -3,7 +3,7 @@ import { model, models, Schema, Types } from "mongoose";
 const CategorySchema = new Schema(
   {
     userId: { type: Types.ObjectId, ref: "User", required: true },
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true},
     color: { type: String },
   },
   { timestamps: true }

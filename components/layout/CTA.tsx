@@ -11,7 +11,7 @@ export default function CTA() {
         Free to use. Upgrade when you need more power.
       </p>
 
-      <button className="mt-8 px-8 py-3 rounded-lg bg-[--color-primary] hover:bg-[--color-primary-hover] text-white font-medium">
+      <button className="mt-8 px-8 py-3 rounded-lg bg-[--color-accent] hover:bg-[--color-primary-hover] text-white font-medium">
         Try Memoir
       </button>
     </section>
