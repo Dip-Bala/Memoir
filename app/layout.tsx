@@ -1,6 +1,10 @@
 import {Inter} from 'next/font/google';
 import localFont from 'next/font/local';
 import "./globals.css";
+import type { Metadata } from "next";
+import Script from 'next/script';
+import { SessionProvider } from 'next-auth/react';
+import Providers from './providers';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,10 +22,7 @@ const satoshi = localFont({
   display: "swap"
 })
 
-import type { Metadata } from "next";
-import Script from 'next/script';
-import { SessionProvider } from 'next-auth/react';
-import Providers from './providers';
+
 
 export const metadata: Metadata = {
   title: {
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "Memoir",
     images: [
       {
-        url: "/og-image.png",
+        url: "./logo.png",
         width: 1200,
         height: 630,
         alt: "Memoir – Your Second Brain for the Web",
@@ -63,12 +64,16 @@ export const metadata: Metadata = {
     title: "Memoir – Your Second Brain for the Web",
     description:
       "Save and organize everything you find online. Your second brain, built for the web.",
-    images: ["/og-image.png"],
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: './favicon.ico',
+    apple: './apple-touch-icon.png'
+  }
 };
 
 
