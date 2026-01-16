@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     }
     // console.log("user", user);
 
-    const { name, color } = await req.json();
+    const { name } = await req.json();
 
     const category = await Category.findOne({ userId: user._id, name });
 
@@ -40,7 +40,6 @@ export async function POST(req: NextRequest) {
     }
     await Category.create({
       name,
-      color,
       userId: user._id,
     });
 

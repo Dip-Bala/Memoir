@@ -4,12 +4,7 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import { useRouter } from "next/navigation";
-
-type Category = {
-  _id: string;
-  name: string;
-  color: string;
-};
+import { Category } from "../types";
 
 export default function DashboardShell({
   children,

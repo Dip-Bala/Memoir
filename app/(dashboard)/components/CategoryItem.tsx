@@ -1,11 +1,8 @@
 
 import { Circle } from "lucide-react";
 import { CATEGORY_CONFIG } from "@/lib/categoryConfig";
+import { Category } from "@/app/types";
 
-type Category = {
-  _id: string;
-  name: string;
-};
 
 type Props = {
   category: Category;

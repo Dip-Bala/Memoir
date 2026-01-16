@@ -5,11 +5,7 @@ import { ArrowLeftToLine, Circle, CirclePlus, PanelLeft } from "lucide-react";
 import AddCategoryModal from "./AddCategoryModal";
 import { CATEGORY_CONFIG } from "@/lib/categoryConfig";
 import CategoryItem from "./CategoryItem";
-
-type Category = {
-  _id: string;
-  name: string;
-};
+import { Category } from "@/app/types";
 
 type SidebarProps = {
   open: boolean;

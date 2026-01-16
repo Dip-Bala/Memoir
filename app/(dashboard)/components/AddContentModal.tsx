@@ -138,9 +138,9 @@ export default function AddContentModal({
                   <button
                     type="button"
                     onClick={() => setFile(null)}
-                    className="text-red-500"
+                    className="text-red-500 cursor-pointer"
                   >
-                    <X size={14} />
+                    discard
                   </button>
                 </div>
               ) : (
