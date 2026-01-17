@@ -1,12 +1,9 @@
-<p align="center"> <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" /> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /> <img src="https://img.shields.io/badge/NextAuth-1A1A1A?style=for-the-badge&logo=auth0&logoColor=white" /> <img src="https://img.shields.io/badge/MongoDB-023430?style=for-the-badge&logo=mongodb&logoColor=4DB33D" /> <img src="https://img.shields.io/badge/Mongoose-800000?style=for-the-badge&logo=mongoose&logoColor=white" /> <img src="https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white" /> <img src="https://img.shields.io/badge/TailwindCSS-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8" /> <img src="https://img.shields.io/badge/TypeScript-0F172A?style=for-the-badge&logo=typescript&logoColor=3178C6" /> </p>
-
 <h2 align="center">Memoir</h2>
-
 <p align="center">
   Save anything in one place. Remember it when it matters.
 </p>
 
-<hr>
+<p align="center"> <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" /> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /> <img src="https://img.shields.io/badge/NextAuth-1A1A1A?style=for-the-badge&logo=auth0&logoColor=white" /> <img src="https://img.shields.io/badge/MongoDB-023430?style=for-the-badge&logo=mongodb&logoColor=4DB33D" /> <img src="https://img.shields.io/badge/Mongoose-800000?style=for-the-badge&logo=mongoose&logoColor=white" /> <img src="https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white" /> <img src="https://img.shields.io/badge/TailwindCSS-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8" /> <img src="https://img.shields.io/badge/TypeScript-0F172A?style=for-the-badge&logo=typescript&logoColor=3178C6" /> <img src="https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" /> </p>
 
 ##  Introduction
 
@@ -283,6 +280,95 @@ Each challenge was addressed with **production-oriented solutions**, not hacks.
 * Vector database
 * “Ask your knowledge” interface
 * Context-aware responses
+
+---
+
+##  Environment Variables
+
+Memoir requires the following environment variables to run locally or in production.
+
+A template file **`.env.example`** is included in the repository.
+Create a `.env.local` file and provide your own values.
+
+```env
+# App
+NEXTAUTH_URL=
+
+# Database
+MONGODB_URI=
+
+# Auth
+NEXTAUTH_SECRET=
+
+# OAuth Providers
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+### Notes
+
+* **Never commit `.env.local`** to version control
+* OAuth credentials must be created from:
+
+  * Google Cloud Console
+  * GitHub Developer Settings
+* `NEXTAUTH_URL` should match your deployment domain in production
+
+---
+
+## Deployment
+
+Memoir is designed to be deployed seamlessly on **Vercel**.
+
+### Deploying on Vercel
+
+1. Fork or clone the repository
+2. Create a new project on Vercel
+3. Add all environment variables from `.env.example` to the Vercel dashboard
+4. Set the correct `NEXTAUTH_URL`:
+
+   * Local: `http://localhost:3000`
+   * Production: `https://your-app.vercel.app`
+5. Deploy 
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+</p>
+
+### Important Deployment Notes
+
+* OAuth callback URLs must be updated to match your Vercel domain
+* Cloudinary credentials must allow unsigned or signed uploads based on your configuration
+* MongoDB Atlas is recommended for production databases
+
+---
+
+##  Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`.
+
+---
+
+##  Security Reminder
+
+* All sensitive configuration lives in environment variables
+* Authentication and authorization are enforced server-side
+* User data is always scoped and isolated by session identity
 
 ---
 
