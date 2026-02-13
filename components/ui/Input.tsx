@@ -1,6 +1,10 @@
 "use client";
 
+import { Eye, EyeClosed } from "lucide-react";
+import { useState } from "react";
+
 type InputProps = {
+  id?: string
   label: string;
   type?: string;
   placeholder?: string;
@@ -10,6 +14,7 @@ type InputProps = {
 };
 
 export default function Input({
+  id,
   label,
   type = "text",
   placeholder,
@@ -17,29 +22,51 @@ export default function Input({
   onChange,
   disabled
 }: InputProps) {
-  return (
-    <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium text-[var(--color-text)]">{label}</label>
+  const [showPassword, setShowPassword] = useState<true | false>(false);
+  const isPasswordField = type === "password";
 
+  return (
+    <div className="flex flex-col gap-2" >
+      <label htmlFor={id} className="text-sm font-medium text-text">{label}</label>
+      <div className={`
+    flex items-center
+    bg-surface
+    border border-border
+    rounded-lg
+    focus-within:border-accent
+  `}>
       <input
-        type={type}
+        id={id}
+        type={isPasswordField && showPassword ? "text" : type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         className="
-          bg-[var(--color-surface)]
-          p-3
-          rounded-lg
-          text-sm
-          border
-          border-[var(--color-border)]
-          focus:outline
-          // focus:ring
-          focus:border
-          focus:outline-[var(--color-accent)]
-        "
+      flex-1
+      bg-transparent
+      p-3
+      text-sm
+      outline-none
+    "
         disabled={disabled}
       />
+      {
+        isPasswordField && (
+          <button
+          type="button"
+          onClick={() => setShowPassword(prev => !prev)}
+          className="p-2 text-text-secondary"
+
+          >
+            {showPassword? <EyeClosed strokeWidth={1.5}/>
+            : 
+            <Eye strokeWidth={1.5}/>}
+
+          </button>
+        )
+      }
+      </div>
+
     </div>
   );
 }

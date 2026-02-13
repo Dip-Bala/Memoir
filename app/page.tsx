@@ -13,13 +13,16 @@ import { AISection } from "@/components/layout/AISection";
 import { UseCases } from "@/components/layout/UseCases";
 
 export default function HomePage() {
+ 
   return (
-    <div className="bg-bg text-text">
+    <div className="bg-bg text-text ">
       {/* Header */}
+      <div className="flex flex-col items-center justify-center max-w-7xl mx-auto">
+
       <Header />
 
       {/* Hero (with grid background only here) */}
-      <section className="bg-grid-fade">
+      <section >
         <Hero />
       </section>
 
@@ -39,6 +42,7 @@ export default function HomePage() {
       <HowItWorks />
       <CTA />
       <Footer />
+      </div>
     </div>
   );
 }

@@ -43,7 +43,7 @@ export default function ContentCard({ content, theme }: ContentCardProps) {
       className="
         rounded-lg border border-border
         bg-surface
-        hover:bg-surface-elevated
+        hover:bg-surface
         transition
         overflow-hidden
       "

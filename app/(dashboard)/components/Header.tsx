@@ -37,12 +37,12 @@ export default function Header({
   // console.log("activeCategory", activeCategory);
   // console.log(session)
   return (
-    <header className="flex items-center justify-between gap-2 p-3 border-b border-border">
+    <header className="flex items-center justify-between gap-2 p-3 border-b border-border bg-amber-100x">
       <div className="flex gap-2 items-center">
         {!sidebarOpen && (
           <button
             onClick={onMenuClick}
-            className="text-text-secondary font-light cursor-pointer hover:bg-surface-elevated p-1 rounded-lg"
+            className="text-text-secondary font-light cursor-pointer hover:bg-surface p-1 rounded-lg"
           >
             <PanelLeft size={24} strokeWidth={1.25} />
           </button>
@@ -51,7 +51,7 @@ export default function Header({
         <h1 className="font-medium">{activeCategory?.name}</h1>
         <button
           onClick={() => setShowModal(true)}
-          className=" rounded-lg cursor-pointer flex gap-1 items-center text-sm bg-primary-soft p-2 text-black"
+          className=" rounded-lg cursor-pointer flex gap-1 items-center text-sm bg-surface p-2 text-text border border-border"
         >
           <Plus strokeWidth={1.5} size={16} />
           <span>Add Content</span>
@@ -69,7 +69,7 @@ export default function Header({
         <ThemeToggle />
         <button
           onClick={() => setOpenSettings(true)}
-          className="cursor-pointer hover:bg-surface-elevated rounded-full "
+          className="cursor-pointer hover:bg-surface rounded-full "
         >
           {session.data?.user.image ? (
             <Image

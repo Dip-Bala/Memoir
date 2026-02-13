@@ -68,13 +68,13 @@ export default function Sidebar({
 
       <div className="flex justify-between">
         <div className="font-logo text-xl font-bold text-text p-1">
-          Memoir<span className="text-primary-deep">•</span>
+          Memoir<span className="text-primary">•</span>
         </div>
 
         {/* collapse button */}
         <button
           onClick={onClose}
-          className="text-text-secondary font-light cursor-pointer hover:bg-surface-elevated p-1 rounded-lg"
+          className="text-text-secondary font-light cursor-pointer hover:bg-surface p-1 rounded-lg"
         >
           <PanelLeft size={24} strokeWidth={1.25} />
         </button>
@@ -83,7 +83,7 @@ export default function Sidebar({
       {/* Add Category button */}
       <button
         onClick={() => setShowModal(true)}
-        className="flex items-center gap-2 p-2 w-full rounded-md text-sm font-medium hover:bg-surface-elevated text-primary-deep cursor-pointer mt-4 mb-2"
+        className="flex items-center gap-2 p-2 w-full rounded-md text-sm font-medium hover:bg-surface text-primary cursor-pointer mt-4 mb-2"
       >
         <CirclePlus size={18} />
         <span>Add Category</span>

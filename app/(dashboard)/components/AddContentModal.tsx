@@ -112,7 +112,7 @@ export default function AddContentModal({
         <div className="bg-surface w-full max-w-md rounded-lg p-6 shadow-lg">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Add Content</h2>
-            <button onClick={onClose} className="p-1 rounded hover:bg-surface-elevated">
+            <button onClick={onClose} className="p-1 rounded hover:bg-surface">
               <X size={18} />
             </button>
           </div>
@@ -134,7 +134,7 @@ export default function AddContentModal({
               <CloudUpload />
               {file ? (
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="truncate max-w-[200px]">{file.name}</span>
+                  <span className="truncate max-w-50">{file.name}</span>
                   <button
                     type="button"
                     onClick={() => setFile(null)}

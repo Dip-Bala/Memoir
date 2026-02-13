@@ -37,7 +37,7 @@ export default function ThemeToggle() {
         className={`
           absolute top-1 left-1
           h-7 w-8 rounded-full
-          bg-primary-soft
+          bg-primary
           transition-transform duration-200 ease-out
           ${isDark ? "translate-x-8" : "translate-x-0"}
         `}

@@ -34,7 +34,7 @@ export default function AddCategoryModal({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 z-50 w-screen h-screen">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-primary-soft/40"
+        className="absolute inset-0 bg-primary/20"
         onClick={onClose}
       />
 
@@ -45,7 +45,7 @@ export default function AddCategoryModal({ onClose }: { onClose: () => void }) {
             <h2 className="font-semibold">New Category</h2>
             <button
               onClick={onClose}
-              className="cursor-pointer hover:bg-surface-elevated p-2 rounded-full"
+              className="cursor-pointer hover:bg-surface p-2 rounded-full"
             >
               <X size={18} />
             </button>
@@ -66,7 +66,7 @@ export default function AddCategoryModal({ onClose }: { onClose: () => void }) {
             <button
               type="submit"
               disabled={loading || !name.trim()}
-              className="w-full cursor-pointer bg-primary text-black p-2 rounded-md disabled:opacity-50"
+              className="w-full cursor-pointer bg-primary text-white p-2 rounded-md disabled:opacity-50"
             >
               {loading ? "Creating..." : "Create"}
             </button>

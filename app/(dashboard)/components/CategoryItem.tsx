@@ -33,12 +33,12 @@ export default function CategoryItem({
           isActive
             ? `
             
-              bg-primary-soft
-              text-black
+              bg-primary
+              text-text
             `
             : `
               text-text-secondary
-              hover:bg-surface-elevated
+              hover:bg-surface
             `
         }
       `}

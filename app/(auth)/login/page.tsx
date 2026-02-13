@@ -7,6 +7,7 @@ import Input from "@/components/ui/Input";
 import Link from "next/link";
 import { Google } from "@/components/ui/GoogleAuthButton";
 import { GitHub } from "@/components/ui/GithubAuthButton";
+import { MoveLeft } from "lucide-react";
 
 export default function LoginPage() {
   const { status } = useSession();
@@ -55,9 +56,14 @@ export default function LoginPage() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <Link href="/">
+          <MoveLeft />
+      </Link>
+
       {/* Header */}
+
       <div className="text-center space-y-1">
-        <h1 className="text-xl font-semibold">Welcome back</h1>
+        <h1 className="text-xl font-semibold pb-2">Welcome back</h1>
         <p className="text-sm opacity-70">
           Log in to access and organize your saved knowledge.
         </p>
@@ -70,11 +76,11 @@ export default function LoginPage() {
           onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
           className="
             flex items-center justify-center gap-2 w-full
-            border border-[color:var(--color-border)]
+            border border-border
             rounded-lg
             font-medium
             cursor-pointer
-            hover:bg-[var(--color-surface)]
+            hover:bg-border
             p-2
           "
         >
@@ -87,11 +93,11 @@ export default function LoginPage() {
           onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
           className="
             flex items-center justify-center gap-2 w-full
-            border border-[color:var(--color-border)]
+            border border-border
             rounded-lg
             font-medium
             cursor-pointer
-            hover:bg-[var(--color-surface)]
+            hover:bg-surface
             p-2
           "
         >
@@ -102,9 +108,9 @@ export default function LoginPage() {
 
       {/* OR Divider */}
       <div className="flex items-center gap-3">
-        <span className="flex-1 h-px bg-[var(--color-border)]" />
+        <span className="flex-1 h-px bg-border" />
         <span className="text-xs uppercase opacity-60">or</span>
-        <span className="flex-1 h-px bg-[var(--color-border)]" />
+        <span className="flex-1 h-px bg-border" />
       </div>
 
       {/* Error */}
@@ -134,8 +140,8 @@ export default function LoginPage() {
         disabled={loading}
         className="
           w-full
-          bg-[color:var(--color-text)]
-          text-[color:var(--color-bg)]
+          bg-accent
+          text-text-accent
           py-3
           rounded-lg
           font-medium
@@ -143,6 +149,7 @@ export default function LoginPage() {
           cursor-pointer
           disabled:cursor-not-allowed
           disabled:opacity-60
+          my-4
         "
       >
         {loading ? "Logging in..." : "Login"}

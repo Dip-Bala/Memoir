@@ -32,10 +32,10 @@ const variants: Record<VariantType, string> = {
     "bg-[--color-primary] hover:bg-[--color-primary-hover]",
 
   secondary:
-    "border border-[color:var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-text)] hover:bg-[--color-surface-elevated]",
+    "border border-[color:var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-text)] hover:bg-[--color-surface]",
 
   ghost:
-    "text-[color:var(--color-text)] hover:bg-[--color-surface-elevated]",
+    "text-[color:var(--color-text)] hover:bg-[--color-surface]",
 
   destructive:
     "bg-red-600 hover:bg-red-700 text-white",

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function CTA() {
   const router = useRouter();
   return (
-    <section className="px-8 sm:px-16 py-20 text-center bg-surface-elevated flex flex-col items-center justify-center gap-4">
+    <section className="px-8 sm:px-16 py-20 text-center bg-surface flex flex-col items-center justify-center gap-4">
       <h2 className="text-3xl font-medium ">
   Start remembering what you save
 </h2>
